@@ -32,7 +32,12 @@
     --input: 214.3 31.8% 91.4%;
     --ring: 222.2 84% 4.9%;
 
-    --radius: 0.5rem;
+    --radius: 0.25rem;
+
+    --blueprint: 214 65% 32%;
+    --blueprint-ink: 213 40% 18%;
+    --blueprint-paper: 210 30% 98%;
+    --blueprint-line: 213 25% 78%;
 
     --sidebar-background: 0 0% 98%;
 
@@ -98,4 +103,35 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+.grid-paper {
+  background-color: hsl(var(--blueprint-paper));
+  background-image:
+    linear-gradient(hsl(var(--blueprint-line) / 0.35) 1px, transparent 1px),
+    linear-gradient(
+      90deg,
+      hsl(var(--blueprint-line) / 0.35) 1px,
+      transparent 1px
+    ),
+    linear-gradient(hsl(var(--blueprint-line) / 0.15) 1px, transparent 1px),
+    linear-gradient(
+      90deg,
+      hsl(var(--blueprint-line) / 0.15) 1px,
+      transparent 1px
+    );
+  background-size:
+    100px 100px,
+    100px 100px,
+    20px 20px,
+    20px 20px;
+}
+
+.paper-texture {
+  background-color: hsl(var(--blueprint-paper));
+  background-image: radial-gradient(
+    hsl(var(--blueprint-line) / 0.08) 1px,
+    transparent 0
+  );
+  background-size: 4px 4px;
 }
