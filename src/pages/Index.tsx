@@ -48,10 +48,19 @@ const Index = () => {
               Баня 6×6 м
             </h1>
           </div>
-          <div className="font-mono text-xs text-right leading-relaxed">
-            <div>Масштаб <span className="text-blueprint font-600">1:50</span></div>
-            <div>Лист <span className="text-blueprint font-600">АР-01</span></div>
-            <div>Дата <span className="text-blueprint font-600">05.07.2026</span></div>
+          <div className="flex items-center gap-5">
+            <div className="font-mono text-xs text-right leading-relaxed">
+              <div>Масштаб <span className="text-blueprint font-600">1:50</span></div>
+              <div>Лист <span className="text-blueprint font-600">АР-01</span></div>
+              <div>Дата <span className="text-blueprint font-600">05.07.2026</span></div>
+            </div>
+            <button
+              onClick={() => window.print()}
+              className="no-print font-display uppercase text-sm tracking-wide flex items-center gap-2 bg-blueprint text-blueprint-paper px-4 py-2.5 border-2 border-blueprint-ink/70 hover:-translate-y-0.5 transition-transform shadow-[3px_3px_0_hsl(213_40%_18%/0.25)]"
+            >
+              <Icon name="Download" size={16} />
+              Скачать PDF
+            </button>
           </div>
         </div>
       </header>
