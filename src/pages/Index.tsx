@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import BathhousePlan from '@/components/BathhousePlan';
 import Icon from '@/components/ui/icon';
 
@@ -37,8 +38,13 @@ const engineering = [
 ];
 
 const Index = () => {
+  const [customer, setCustomer] = useState('');
+  const [address, setAddress] = useState('');
+
   return (
     <div className="min-h-screen grid-paper text-blueprint-ink font-sans">
+      <TitleSheet customer={customer} setCustomer={setCustomer} address={address} setAddress={setAddress} />
+
       {/* Header */}
       <header className="border-b-2 border-blueprint-ink/80 bg-blueprint-paper/80 backdrop-blur">
         <div className="max-w-6xl mx-auto px-6 py-5 flex flex-wrap items-end justify-between gap-4">
@@ -191,6 +197,81 @@ const Index = () => {
     </div>
   );
 };
+
+const TitleSheet = ({
+  customer,
+  setCustomer,
+  address,
+  setAddress,
+}: {
+  customer: string;
+  setCustomer: (v: string) => void;
+  address: string;
+  setAddress: (v: string) => void;
+}) => (
+  <section className="title-sheet max-w-6xl mx-auto px-6 pt-10 pb-4 print:min-h-[100vh] print:flex print:flex-col print:justify-between">
+    <div className="border-2 border-blueprint-ink/70 bg-blueprint-paper p-8 sm:p-14 print:border-0">
+      <div className="flex items-center justify-between mb-16 font-mono text-xs uppercase tracking-[0.3em] text-blueprint">
+        <span>Архитектурный проект</span>
+        <span>Лист АР-00 · Титульный</span>
+      </div>
+
+      <div className="text-center mb-16">
+        <div className="font-mono text-sm text-blueprint tracking-[0.4em] mb-4">ПРОЕКТНАЯ ДОКУМЕНТАЦИЯ</div>
+        <h1 className="font-display text-5xl sm:text-6xl uppercase tracking-tight mb-3">Баня 6×6 м</h1>
+        <div className="font-mono text-sm text-blueprint-ink/60">Планировочное решение · Инженерные сети · Спецификация</div>
+      </div>
+
+      <div className="grid sm:grid-cols-2 gap-8 max-w-3xl mx-auto mb-16 font-mono text-sm">
+        <label className="block">
+          <span className="block text-[11px] uppercase tracking-wider text-blueprint-ink/60 mb-1">Заказчик</span>
+          <input
+            value={customer}
+            onChange={(e) => setCustomer(e.target.value)}
+            placeholder="Введите ФИО заказчика"
+            className="no-print-border w-full bg-transparent border-b-2 border-blueprint-ink/40 focus:border-blueprint outline-none py-1.5 placeholder:text-blueprint-ink/30"
+          />
+          <span className="print-value hidden">{customer || '\u00A0'}</span>
+        </label>
+        <label className="block">
+          <span className="block text-[11px] uppercase tracking-wider text-blueprint-ink/60 mb-1">Адрес объекта</span>
+          <input
+            value={address}
+            onChange={(e) => setAddress(e.target.value)}
+            placeholder="Введите адрес участка"
+            className="no-print-border w-full bg-transparent border-b-2 border-blueprint-ink/40 focus:border-blueprint outline-none py-1.5 placeholder:text-blueprint-ink/30"
+          />
+          <span className="print-value hidden">{address || '\u00A0'}</span>
+        </label>
+        <div>
+          <span className="block text-[11px] uppercase tracking-wider text-blueprint-ink/60 mb-1">Дата</span>
+          <div className="border-b-2 border-blueprint-ink/40 py-1.5">05.07.2026</div>
+        </div>
+        <div>
+          <span className="block text-[11px] uppercase tracking-wider text-blueprint-ink/60 mb-1">Масштаб</span>
+          <div className="border-b-2 border-blueprint-ink/40 py-1.5">1:50</div>
+        </div>
+      </div>
+
+      <div className="grid sm:grid-cols-2 gap-8 max-w-3xl mx-auto font-mono text-sm">
+        <div>
+          <span className="block text-[11px] uppercase tracking-wider text-blueprint-ink/60 mb-8">Разработал</span>
+          <div className="border-b-2 border-blueprint-ink/40 h-8" />
+          <span className="block text-[10px] text-blueprint-ink/50 mt-1">подпись / расшифровка</span>
+        </div>
+        <div>
+          <span className="block text-[11px] uppercase tracking-wider text-blueprint-ink/60 mb-8">Согласовано</span>
+          <div className="border-b-2 border-blueprint-ink/40 h-8" />
+          <span className="block text-[10px] text-blueprint-ink/50 mt-1">подпись / расшифровка</span>
+        </div>
+      </div>
+    </div>
+
+    <div className="hidden print:flex justify-center pt-8 font-mono text-[11px] text-blueprint-ink/50">
+      Комплект чертежей АР-00…АР-01 · 2026
+    </div>
+  </section>
+);
 
 const SectionTitle = ({ icon, num, children }: { icon: string; num: string; children: React.ReactNode }) => (
   <div className="flex items-center gap-3 mb-5">
